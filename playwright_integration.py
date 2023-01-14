@@ -12,6 +12,12 @@ class SyncPlaywright():
     同步的浏览器自动测试工具
     """
     def initization(self, browser: int = 0, device: str = "", headless: bool = False):
+        """
+        初始化参数
+        :param browser:选择合适的浏览器，0表示chromium，1表示firefox，2表示webkit
+        :param device: 如果需要选择手机类型，则在其中填写，如'iPhone 12 Pro Max'
+        :param headless: 是否启用无头模式，默认为否
+        """
         self.p = sync_playwright().start()
         if device != "":
             try:
@@ -104,6 +110,12 @@ class AsyncPlaywright():
     异步的浏览器测试工具
     """
     async def initization(self, browser: int = 0, device: str = "", headless: bool = False):
+        """
+        初始化参数
+        :param browser:选择合适的浏览器，0表示chromium，1表示firefox，2表示webkit
+        :param device: 如果需要选择手机类型，则在其中填写，如'iPhone 12 Pro Max'
+        :param headless: 是否启用无头模式，默认为否
+        """
         self.p = await async_playwright().start()
         if device != "":
             try:
@@ -190,6 +202,7 @@ class AsyncPlaywright():
         await self.b.close()
         await self.p.stop()
         logging.info("Successfully closed all processes")
+
 # test for AsyncPlaywright
 async def main():
     b = AsyncPlaywright()
@@ -198,7 +211,7 @@ async def main():
     await b.click("input[name=\"wd\"]")
     await b.type("input[name=\"wd\"]", "nba")
     await b.click("text=百度一下")
-    await asyncio.sleep(2)
+
     await b.close_all()
 
 if __name__ == "__main__":
