@@ -198,7 +198,7 @@ async def main():
     await b.click("input[name=\"wd\"]")
     await b.type("input[name=\"wd\"]", "nba")
     await b.click("text=百度一下")
-
+    await asyncio.sleep(2)
     await b.close_all()
 
 if __name__ == "__main__":
